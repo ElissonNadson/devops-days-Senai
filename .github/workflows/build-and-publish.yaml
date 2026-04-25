@@ -40,12 +40,40 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
+      - name: Validate deploy secrets
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER_PRIMARY: ${{ secrets.EC2_USER }}
+          EC2_USER_FALLBACK: ${{ secrets.EC2_USERNAME }}
+          EC2_KEY_PRIMARY: ${{ secrets.EC2_SSH_KEY }}
+          EC2_KEY_FALLBACK: ${{ secrets.EC2_PRIVATE_KEY }}
+          EC2_PASSWORD: ${{ secrets.EC2_PASSWORD }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "$EC2_HOST" ]; then
+            echo "Missing secret: EC2_HOST"
+            exit 1
+          fi
+
+          if [ -z "$EC2_USER_PRIMARY" ] && [ -z "$EC2_USER_FALLBACK" ]; then
+            echo "Missing secret: EC2_USER (or EC2_USERNAME)"
+            exit 1
+          fi
+
+          if [ -z "$EC2_KEY_PRIMARY" ] && [ -z "$EC2_KEY_FALLBACK" ] && [ -z "$EC2_PASSWORD" ]; then
+            echo "Missing authentication secret: EC2_SSH_KEY (or EC2_PRIVATE_KEY) or EC2_PASSWORD"
+            exit 1
+          fi
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
+          username: ${{ secrets.EC2_USER || secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY || secrets.EC2_PRIVATE_KEY }}
+          password: ${{ secrets.EC2_PASSWORD }}
+          port: ${{ secrets.EC2_PORT || '22' }}
           script: |
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/devopsdays:latest
 
