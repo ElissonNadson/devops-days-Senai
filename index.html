@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo | DevOpsDays Feira de Santana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        devopsRed: '#E31837',
+                        devopsGreen: '#007A33',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen font-sans">
+    
+    <div class="max-w-4xl w-full bg-white shadow-2xl rounded-2xl overflow-hidden mx-4 my-8 text-center p-10 border-t-8 border-devopsRed relative">
+
+        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-gray-50 to-transparent opacity-50 pointer-events-none"></div>
+
+        <div class="flex justify-center mb-8 relative z-10">
+            <img src="https://devopsdays.org/events/2025-feira-de-santana/logo_hu_6410111051875b59.webp" 
+                 alt="Logo DevOpsDays Feira de Santana" 
+                 class="h-56 object-contain drop-shadow-md hover:scale-105 transition-transform duration-300">
+        </div>
+
+        <h1 class="text-4xl md:text-5xl font-extrabold text-devopsGreen mb-6 tracking-tight relative z-10">
+            Seja Bem-vindo ao <br>
+            <span class="text-devopsRed">DevOpsDays</span> Feira de Santana!
+        </h1>
+
+        <p class="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto relative z-10">
+            O evento que une a comunidade de tecnologia de Feira de Santana e região para discutir cultura, automação, medição e compartilhamento. 
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-5 relative z-10">
+            <a href="#programacao" class="px-8 py-4 bg-devopsRed text-white font-bold rounded-xl shadow-lg hover:bg-red-700 transition duration-300 ease-in-out transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+                Ver Programação
+            </a>
+            <a href="https://devopsdays.org/events/2025-feira-de-santana/welcome/" target="_blank" class="px-8 py-4 bg-white border-2 border-devopsGreen text-devopsGreen font-bold rounded-xl shadow-lg hover:bg-green-50 transition duration-300 ease-in-out transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                </svg>
+                Site Oficial
+            </a>
+        </div>
+
+        <div class="mt-14 pt-6 border-t border-gray-200 text-sm text-gray-400">
+            <p>&copy; 2025 DevOpsDays Feira de Santana. Organizado pela comunidade local.</p>
+        </div>
+    </div>
+
+</body>
+</html>
